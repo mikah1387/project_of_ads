@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}lien envoyé {% endblock %}
+
+{% block body %}
+   <section class="styleform">
+
+   
+    <p>
+        
+        un lien de rénitialisation vient d'etre envoyer dans votre boite mail, 
+        ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }} .
+    </p>
+    <p> si vous n'avez pas recu ce mail vous pouvez reeseyer avec ce lien  <a href="{{ path('app_forgot_password_request') }}" style="text-decoration:underline; color:rgb(109, 109, 232)">try again</a>.</p>
+</section>
+{% endblock %}

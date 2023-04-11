@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une categorie{% endblock %}
+
+{% block body %}
+<section class="admin">
+    {% include "partials/_navbaradmin.html.twig" %}
+    <section class="styleform">
+
+        <div class="parentform">
+            <h1>Ajouter une Categorie</h1>
+
+            {{ form_start(add_categorieform) }}
+            {{ form_row(add_categorieform.name) }}
+            {{ form_row(add_categorieform.parent) }}
+
+            <button type="submit" class="btn">Ajouter</button>
+            {{ form_end(add_categorieform) }}
+
+        </div>
+    </section>
+</section>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} gestion des categories {% endblock %}
+
+{% block body %}
+
+<section class="admin">
+
+
+    {% include "partials/_navbaradmin.html.twig" %}
+
+   <div class="content_admin">
+    <h1> Gestion des categories </h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th> ID</th>
+                <th> Parent</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categorie in categories %}
+            <tr>
+                <td> {{categorie.id}} </td> 
+                {% if categorie.parent is null  %}
+                <th>{{null}} </th>   
+                {% else %}   
+                <td>{{categorie.parent.name}}</td>
+                {% endif %}
+                <td> {{categorie.name}} </td> 
+                <td> {{categorie.slug}} </td> 
+                <td>
+                    <a href="#" class="btn_btn"> Modifier</a>
+                    <a href="#" class="btn_btn"> supprimer</a>
+                </td>
+               
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+   </div>
+       
+
+       
+</section>
+
+{% endblock  %}

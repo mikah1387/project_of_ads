@@ -1,0 +1,71 @@
+<div id="content">
+
+
+<section class="container_annonces">
+    {% for annonce in annonces %}
+
+    <div class="card">
+        <div class="headercard">
+            <img src="{{asset('assets/uploads/annonces/' ~ annonce.images[0].name)|imagine_filter('square')  }}"
+                alt="img_{{annonce.title}}">
+
+        </div>
+        <div class="bodycard">
+            <h2> {{annonce.title}}</h2>
+            <h3>{{annonce.slug}}</h3>
+
+            <p>Ajouté par Id: {{annonce.users.id}}</p>
+            <p>{{annonce.categories.parent.name}}</p>
+
+            {% if app.user %}
+
+
+            {% for favori in annonce.favoris %}
+            {% if favori.id == app.user.id %}
+
+            <a href="{{path('annonces_remove_favori',{id:annonce.id})}}" class="fa-solid"><i
+                    class="fa-solid fa-heart"></i></a>
+            {% else %}
+            <a href="{{path('annonces_add_favori',{id:annonce.id})}}" class="fa-regular"><i
+                    class="fa-regular fa-heart"></i></a>
+
+            {% endif %}
+
+            {% else %}
+            <a href="{{path('annonces_add_favori',{id:annonce.id})}}" class="fa-regular"><i
+                    class="fa-regular fa-heart"></i></a>
+
+            {% endfor %}
+            {% endif %}
+
+            <p><a href="{{path('annonces_detail',{slug:annonce.slug})}}" class="btn_btn btn_card">Detail</a></p>
+
+        </div>
+    </div>
+    {% endfor %}
+   
+
+</section>
+
+ {# <h3> {{queryString}}</h3> #}
+ {% set queryParams = app.request.query.all %}
+
+{% set queryString = queryParams|filter((v,k)=> k != 'page' and k !='ajax')|url_encode %}
+  <nav aria-label="..." class="navigation_annonces">
+    <ul class="pagination">
+      <li class="page-item {{(page == 1)? 'disabled':''}} ">
+        <a class="page-link" href="?page={{page - 1}}&{{queryString}}" >Prev</a>
+      </li>
+      {% set pages = (totalan / limit)|round(0,'ceil') %}
+      {% for item in 1..pages %}
+  
+  <li class="page-item {{(page == item)? 'active': ''}} "><a class="page-link" href="?page={{item}}&{{queryString}}">{{ item }}</a></li>
+      {% endfor %}
+      
+     
+      <li class="page-item {{(page == pages)? 'disabled':''}}">
+        <a class="page-link" href="?page={{page + 1}}&{{queryString}}">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

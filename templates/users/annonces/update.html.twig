@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une annonce{% endblock %}
+
+{% block body %}
+
+<section class="styleform">
+
+    <div class="parentform">
+        <h1>Modifier une Annonce</h1>
+
+        {{ form_start(add_annoncesform) }}
+        {{ form_row(add_annoncesform.title) }}
+        {{ form_row(add_annoncesform.content) }}
+        {{ form_row(add_annoncesform.categories) }}
+        {% for image in annonce.images %} 
+         <div class="image">
+            <img src="{{asset('assets/uploads/annonces/' ~ image.name)|imagine_filter('minisquare')}}" alt="{{annonce.title}}">
+            <a href="{{path('users_delate_image',{ id: image.id})}}" class="btn_btn">supprimer</a>
+        </div>
+        {% endfor %}
+
+        {{ form_row(add_annoncesform.images) }}
+        <button type="submit" class="btn">Ajouter</button>
+        {{ form_end(add_annoncesform) }}
+
+    </div>
+</section>
+
+{% endblock %}

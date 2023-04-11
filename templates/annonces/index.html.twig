@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{annonce.title}} {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css ">
+
+{% endblock stylesheets %}
+{% block javascripts %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js   " defer></script>
+<script src="{{asset('assets/js/comment.js')}}" defer></script>
+
+{% endblock %}
+
+{% block body %}
+<section class="annonce">
+    <div class="annonce_detail">
+        <div id="carouselExample" class="carousel slide">
+
+
+            <div class="carousel-inner">
+                {% for image in annonce.images %}
+                <div class="carousel-item active">
+                    <img src="{{asset('assets/uploads/annonces/' ~ image.name) }}" class="d-block w-100"
+                        alt="img_{{annonce.title}}">
+                </div>
+                {% endfor %}
+
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <div class="body_detail">
+
+            <h1>{{annonce.title}} </h1>
+            <h2> {{annonce.slug}}</h2>
+            <h3> Cat : {{annonce.categories.name}}</h3>
+            <h3> {{annonce.content|striptags|u.truncate(50,'...')}}</h3>
+            {% if is_granted('ROLE_USER') %}
+            <a href="" class="btn_btn" data-bs-toggle="modal" data-bs-target="#modale-contact"> Contacter le vendeur</a>
+            {% endif %}
+             {% if is_granted('annonce_edit', annonce) %}
+                
+            <a href="{{path('users_annonces_update', {id:annonce.id})}}" class="btn_btn"> Modifier l'annonce</a>
+             {% endif %}
+             {% if is_granted('annonce_delete', annonce) %}
+                
+             <a href="{{path('users_annonces_delete', {id:annonce.id})}}" class="btn_btn"> supprimer l'annonce</a>
+              {% endif %}
+
+        </div>
+
+
+        <div id="trycomment">
+            <h2>Ajouter un commentaire </h2>
+            {{ form(formcomment) }}
+
+        </div>
+
+
+
+    </div>
+
+    <div class="comments">
+        <h2> les commentaires</h2>
+        <hr>
+        {% for comment in annonce.comments %}
+
+        {% if comment.parent == null %}
+        <div class="comment">
+            
+            <h3> commentaire de  {{comment.nickname}}</h3>
+            <h4> publie  le {{ comment.createdAt|date("m/d/Y")}}</h4>
+            <p>{{comment.content}}</p>
+            <a href="#trycomment" class="btn_btn" data-replay data-id={{comment.id}}>Repondre</a>
+
+            <h2> {{comment.replies|length}} Réponses </h2>
+            <hr>
+            {% for replay in comment.replies %}
+            
+            <h3> reponse de  {{replay.nickname}}</h3>
+            <h4> publie le {{ replay.createdAt|date("m/d/Y")}}</h4>
+            <p>{{replay.content}}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+
+        {% endfor %}
+
+
+
+    </div>
+    <div class="modal fade" id="modale-contact" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Contacter le vendeur</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                {{ form_start(formcontact) }}
+
+                <div class="modal-body">
+                    <div>
+                        {{ form_widget(formcontact.title,{'attr':{'value':annonce.title}}) }}
+                    </div>
+                    {{ form_row(formcontact.email) }}
+                    {{ form_row(formcontact.message) }}
+
+                </div>
+                <div class="modal-footer">
+                    {# <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">X</button> #}
+                    <button type="submit" class="btn btn-primary ">Envoyer</button>
+                </div>
+                {{ form_end(formcontact) }}
+
+            </div>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

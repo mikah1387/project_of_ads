@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block body %}
+
+<section class="home">
+
+  <h1>Annonces.fr le meilleur site pour vos annonces </h1>
+  
+  <div class="container_home">
+
+    {% for categorie in categories %}
+    {% if categorie.parent is null %}
+
+
+
+    <div class="card">
+      <div class="headercard">
+        <h2> {{categorie.name}}</h2>
+        {% if categorie.name == 'Pc_portables' %}
+        <div class="cat_image">
+          <img src="{{asset('assets/images/pc_portable.webp')|imagine_filter('square')}}" alt="img_pc_portable">
+        </div>
+        {% elseif categorie.name == 'Ecrans' %}
+        <div class="cat_image">
+          <img src="{{asset('assets/images/ecrans1.webp')|imagine_filter('square')}}" alt="img_ecrans">
+        </div>
+        {% elseif categorie.name == 'Smartphones' %}
+        <div class="cat_image">
+          <img src="{{asset('assets/images/smartphone.webp')|imagine_filter('square')}}" alt="img_ecrans">
+        </div>
+        {% elseif categorie.name == 'Véhicule' %}
+        <div class="cat_image">
+          <img src="{{asset('assets/images/vehicule.jpg')|imagine_filter('square')}}" alt="img_ecrans">
+        </div>
+        {% endif %}
+    
+      </div>
+      <ul>
+        {% for caty in categories %}
+        {% if caty.parent is not null %}
+        {% if caty.parent.name == categorie.name %}
+        <li> <a href="{{path('categories_list',{slug:caty.slug})}}">{{ caty.name}}</a> </li>
+        {% endif %}
+        {% endif %}
+    
+    
+        {% endfor %}
+    
+      </ul>
+    
+    
+      
+    </div>
+    
+    {% endif %}
+    
+    
+    {% endfor %}
+    
+    </div>
+</section>
+
+{% endblock %}

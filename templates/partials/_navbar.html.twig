@@ -1,0 +1,28 @@
+<header>
+ 
+    <ul {% if is_granted('ROLE_ADMIN') %} style="background:rgb(92, 181, 168)" {% endif %}>
+        <li><a href="{{path('home_index')}}">Acceuil</a> </li>
+        <li> <a href="{{path('home_contact')}}">Contactez-nous</a> </li>
+        <li> <a href="{{path('annonces_all')}}">Annonces</a> </li>
+        <li> <a href="{{path('annonces_search')}}">Rechercher</a> </li>
+        
+        {% if app.user %}
+        <li> <a href="{{path('app_profile')}}">Mon profil</a> </li>
+
+        <li> <a href=" {{ path('app_logout') }} ">Deconnexion</a> </li>
+        {% if is_granted('ROLE_ADMIN')  %}
+        <li> <a href="{{path('admin_index')}}">Administration</a> </li>
+            
+        {% endif %}
+
+        {% else %}
+        <li><a href="{{ path('app_register') }}">Inscription</a> </li>
+        <li> <a href=" {{path('app_login')}}">connexion</a> </li>
+        {% endif %}
+        
+       
+        
+
+    </ul>
+
+</header>

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des annonces {% endblock %}
+
+{% block body %}
+<section class="container_home">
+  {% for annonce in annonces %}
+  
+      <div class="card">
+        <div class="headercard">
+          <img src="{{asset('assets/uploads/annonces/' ~ annonce.images[0].name)|imagine_filter('square')  }}" alt="img_{{annonce.title}}">
+         
+        </div>
+        <div class="bodycard">
+          <h2> {{annonce.title}}</h2>
+          <h3>{{annonce.slug}}</h3>
+          
+          <p>Ajouté par Id: {{annonce.users.id}}</p>
+
+          {% if app.user   %}
+       
+          
+          {% for favori in annonce.favoris %}
+           {% if favori.id == app.user.id %}
+            
+          <a href="{{path('annonces_remove_favori',{id:annonce.id})}}" class="fa-solid"><i class="fa-solid fa-heart"></i></a>
+             {% else %}
+          <a href="{{path('annonces_add_favori',{id:annonce.id})}}" class="fa-regular"><i class="fa-regular fa-heart"></i></a>
+            
+          {% endif %}
+          
+          {% else %}
+          <a href="{{path('annonces_add_favori',{id:annonce.id})}}" class="fa-regular"><i class="fa-regular fa-heart"></i></a>
+  
+            {% endfor %}
+          {% endif %}
+
+       
+         
+            
+      
+
+          <p><a href="{{path('annonces_detail',{slug:annonce.slug})}}" class="btn_btn btn_card">Detail</a></p>
+
+        </div>
+      </div>
+   
+  {% endfor %}
+</section>
+{% endblock %}

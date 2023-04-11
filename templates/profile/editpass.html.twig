@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier votre mot de passe {% endblock %}
+
+{% block body %}
+<section class="styleform">
+
+    <div class="parentform">
+        <h1>Modifier mon mot de passe</h1>
+        <form method="post">
+            <div>
+
+                <label for="pass">mot de passe</label>
+                <input type="password" id="pass" name="pass">
+            </div>
+            <div>
+
+                <label for="pass2">confirmez le mot de passe</label>
+                <input type="password" id="pass2" name="pass2">
+            </div>
+            <button type="submit" class="btn">Valider</button>
+
+        </form>
+
+    </div>
+</section>
+
+
+
+{% endblock %}

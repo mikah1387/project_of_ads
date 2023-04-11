@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une annonce{% endblock %}
+
+{% block body %}
+<section class="styleform">
+
+    <div class="parentform">
+        <h1>Ajouter une Annonce</h1>
+    
+        {{ form_start(add_annoncesform) }}
+            {{ form_row(add_annoncesform.title) }}
+            {{ form_row(add_annoncesform.content) }}
+            {{ form_row(add_annoncesform.categories) }}
+            {{ form_row(add_annoncesform.images) }}
+            <button type="submit" class="btn">Ajouter</button>
+        {{ form_end(add_annoncesform) }}
+    
+    </div>
+    </section>
+
+{% endblock %}
