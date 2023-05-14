@@ -51,8 +51,20 @@ body{
     border:$green;
     background: $green_light;
 }
-header ul{
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     background:$gold;
+
+.logo{
+
+    font-size: 1.5rem;
+    color: black;
+    font-weight: bold;
+    font-style: italic;
+}
+ul{
    
     display: flex;
     justify-content: center;
@@ -70,6 +82,7 @@ header ul{
           
         }
     }
+}
 }
 main{
 
@@ -241,11 +254,15 @@ table{
 }
 .home{
 
-    h1{
+    h1,h2{
         text-align: center;
         font-size: 2rem;
         margin: 20px auto;
         color: $gold;
+    }
+    h2{
+        font-size: 1.5rem; 
+        color: green;
     }
 }
 

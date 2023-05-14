@@ -1,5 +1,7 @@
 <header>
- 
+     <div class="logo">
+        <a href="{{path('home_index')}}">{{titre}} </a>
+     </div>
     <ul {% if is_granted('ROLE_ADMIN') %} style="background:rgb(92, 181, 168)" {% endif %}>
         <li><a href="{{path('home_index')}}">Acceuil</a> </li>
         <li> <a href="{{path('home_contact')}}">Contactez-nous</a> </li>
