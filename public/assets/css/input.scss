@@ -83,6 +83,26 @@ ul{
         }
     }
 }
+.li_categorys{
+   position: relative;
+    .ul_cat{
+        background: $gold;
+        position: absolute;
+        z-index: 99;
+        top: 48px;
+        width: 100%;
+        height: auto;
+        display: none;
+        transition: 0.4s;
+    }
+    &:hover {
+
+        .ul_cat{
+            display: block;
+          
+        }
+    }
+}
 }
 main{
 
@@ -260,7 +280,7 @@ table{
         margin: 20px auto;
         color: $gold;
     }
-    h2{
+    h2,h3{
         font-size: 1.5rem; 
         color: green;
     }

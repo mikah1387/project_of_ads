@@ -43,7 +43,7 @@ class CategoriesRepository extends ServiceEntityRepository
 
         $query = $this->createQueryBuilder('c')
         
-                        -> where('c.parent IS NULL')
+                        -> where('c.parent IS NOT NULL')
                         ->orderBy('c.name','ASC');
        
     

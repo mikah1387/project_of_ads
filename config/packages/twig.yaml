@@ -2,6 +2,7 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
          titre: 'Top-annonces.fr'
+         cats: '@App\Twig\CategoriesExten'
 when@test:
     twig:
         strict_variables: true

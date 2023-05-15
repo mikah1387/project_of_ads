@@ -5,6 +5,17 @@
     <ul {% if is_granted('ROLE_ADMIN') %} style="background:rgb(92, 181, 168)" {% endif %}>
         <li><a href="{{path('home_index')}}">Acceuil</a> </li>
         <li> <a href="{{path('home_contact')}}">Contactez-nous</a> </li>
+        <li class="li_categorys"> <a href="">Categories</a> 
+           
+            <ul class="ul_cat">    
+                {% for cat in cats.getCategories %}
+              <li> <a href="{{path('categories_list',{slug:cat.slug})}}">{{ cat.name}}</a></li>
+               {% endfor %}
+
+            </ul>
+
+        </li>
+
         <li> <a href="{{path('annonces_all')}}">Annonces</a> </li>
         <li> <a href="{{path('annonces_search')}}">Rechercher</a> </li>
         

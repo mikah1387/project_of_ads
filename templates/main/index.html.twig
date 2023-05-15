@@ -6,10 +6,11 @@
 
 <section class="home">
 
-   <h1>{{titre}} </h1>
+  <h1>{{titre}} </h1>
   <h2>Top-Annonces.fr le meilleur site pour vos annonces </h2>
+ 
   
-  <div class="container_home">
+   <div class="container_home">
 
     {% for categorie in categories %}
     {% if categorie.parent is null %}
