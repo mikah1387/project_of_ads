@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} gestion des regions {% endblock %}
+
+{% block body %}
+
+<section class="admin">
+
+
+    {% include "partials/_navbaradmin.html.twig" %}
+
+   <div class="content_admin">
+    <h1> Gestion des regions </h1>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th> ID</th>
+                
+                <th>Name</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for region in regions %}
+            <tr>
+                <td> {{region.id}} </td> 
+              
+                <td> {{region.name}} </td> 
+              
+               
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+   </div>
+       
+
+       
+</section>
+
+{% endblock  %}

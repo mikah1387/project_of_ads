@@ -26,7 +26,8 @@ class CategoriesExten extends AbstractExtension
 
     public function getCategories(){
 
-        return $this->em->getRepository(Categories::class)->findcatygorieparent();
+        return $this->em->getRepository(Categories::class)->findcatygorieparentNotNull()
+        ;
     }
 }
 

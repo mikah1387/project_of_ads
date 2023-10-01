@@ -150,8 +150,9 @@ class AnnoncesController extends AbstractController
 
     $categories = $catyrepo->findcatygorieparent();
 
-    if ($request->get('ajax')) {
 
+    if ($request->get('ajax')) {
+      // dd($annonces);
       return new JsonResponse([
 
         'content' => $this->renderView('annonces/_content_annonces.html.twig', [

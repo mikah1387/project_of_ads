@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une region{% endblock %}
+{% block javascripts %}
+
+<script src="{{asset('assets/js/ajouterRegion.js')}}" defer></script>
+
+{% endblock %}
+{% block body %}
+<section class="admin">
+    {% include "partials/_navbaradmin.html.twig" %}
+    <section class="styleform">
+
+        <div class="parentform">
+            <h1>Ajouter une regions</h1>
+
+            {{ form_start(add_regionform) }}
+            {{ form_row(add_regionform.name) }}
+            <div id="departements" 
+            data-prototype ="{{form_row(add_regionform.departements.vars.prototype)|e('html_attr')}}">
+            {{ form_row(add_regionform.departements) }}
+            <span></span>
+
+            </div>
+            <button type="submit" class="btn">Ajouter</button>
+            {{ form_end(add_regionform) }}
+
+        </div>
+    </section>
+</section>
+{% endblock %}

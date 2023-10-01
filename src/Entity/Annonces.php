@@ -49,6 +49,9 @@ class Annonces
     #[ORM\OneToMany(mappedBy: 'annonces', targetEntity: Comments::class, orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\ManyToOne(inversedBy: 'departements')]
+    private ?Departements $departements = null;
+
     public function __construct()
     {
        
@@ -70,7 +73,7 @@ class Annonces
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(string $title = null): self
     {
         $this->title = $title;
 
@@ -82,7 +85,7 @@ class Annonces
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug(string $slug = null): self
     {
         $this->slug = $slug;
 
@@ -94,7 +97,7 @@ class Annonces
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(string $content= null): self
     {
         $this->content = $content;
 
@@ -229,6 +232,18 @@ class Annonces
                 $comment->setAnnonces(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDepartements(): ?Departements
+    {
+        return $this->departements;
+    }
+
+    public function setDepartements(?Departements $departements): self
+    {
+        $this->departements = $departements;
 
         return $this;
     }

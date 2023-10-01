@@ -42,6 +42,8 @@
             <h2> {{annonce.slug}}</h2>
             <h3> Cat : {{annonce.categories.name}}</h3>
             <h3> {{annonce.content|striptags|u.truncate(50,'...')}}</h3>
+            <h3>{{annonce.departements.regions.name}}</h3>
+            <h3>{{annonce.departements.name}}</h3>
             {% if is_granted('ROLE_USER') %}
             <a href="" class="btn_btn" data-bs-toggle="modal" data-bs-target="#modale-contact"> Contacter le vendeur</a>
             {% endif %}

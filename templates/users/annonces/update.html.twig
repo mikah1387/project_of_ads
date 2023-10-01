@@ -2,6 +2,10 @@
 
 {% block title %}Modifier une annonce{% endblock %}
 
+{% block javascripts %}
+<script src="{{asset('assets/js/departements.js')}}" defer></script>
+  
+{% endblock %}
 {% block body %}
 
 <section class="styleform">
@@ -21,6 +25,8 @@
         {% endfor %}
 
         {{ form_row(add_annoncesform.images) }}
+        {{ form_row(add_annoncesform.regions) }} 
+         {{ form_row(add_annoncesform.departements) }}
         <button type="submit" class="btn">Ajouter</button>
         {{ form_end(add_annoncesform) }}
 

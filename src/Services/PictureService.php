@@ -13,7 +13,7 @@ class PictureService
 
   public function __construct(ParameterBagInterface $params)
   {
-     $this->params = $params;;;
+     $this->params = $params;
   }
 
   public function add(UploadedFile $picture, ?string $folder = '' )

@@ -27,6 +27,7 @@ window.onload = ()=>{
             }).then(response=>response.json())
             .then(data=>{
                 // on remplace le contenu 
+                // console.log('response')
                document.querySelector('#content').innerHTML = data.content
             //    //on met a jour l'url 
                 history.pushState({},null,url.pathname + '?' + params.toString())

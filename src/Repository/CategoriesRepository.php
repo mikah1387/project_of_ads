@@ -43,13 +43,23 @@ class CategoriesRepository extends ServiceEntityRepository
 
         $query = $this->createQueryBuilder('c')
         
-                        -> where('c.parent IS NOT NULL')
+                        -> where('c.parent IS  NULL')
                         ->orderBy('c.name','ASC');
        
     
         return $query->getQuery()->getResult();
        }
 
+       public function findcatygorieparentNotNull(){
+
+        $query = $this->createQueryBuilder('c')
+        
+                        -> where('c.parent IS NOT NULL')
+                        ->orderBy('c.name','ASC');
+       
+    
+        return $query->getQuery()->getResult();
+       }
 //    /**
 //     * @return Categories[] Returns an array of Categories objects
 //     */

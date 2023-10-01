@@ -20,6 +20,8 @@ checkannonces.forEach(element => {
        let xmlhttp = new XMLHttpRequest;
        xmlhttp.open('GET', '/admin/annonces/active/'+ this.dataset.id)
        xmlhttp.send()
+
+    //    fetch('/admin/annonces/active/'+ this.dataset.id)
     })
 
 });
